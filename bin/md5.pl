@@ -3,20 +3,25 @@ use strict;
 use Digest::MD5 qw(md5_hex);
 use Data::Dumper;
 
+# This is all set with the correct encoding and the correct coords.
+
 my $find     = [ qw(4 5 0 3 1 1 4 0 9 3 2 1 2 6 9) ];
 my $solution = [];
 
-my $coords = 'NiCe-tRy-BuT-tHe-tExT-Is-tHe-KeY';
+my $coords = 'NiCe-tRy-UsE-tHe-lEtTers';
 my $data;
 
 foreach my $letter ( split //, $coords ) {
 	push @$data, [ split //, md5_hex( $letter ) ];
 }
 
+print "<h2 style='color:red'>** Not at posted coordinates **</h2><br><br>\n";
+
 #warn scalar( @$data );
 #warn scalar( @{ $data->[ 0 ] } );
 my $tick;
 my $total_tick;
+
 print "<table cellpadding=0 cellspacing=0 border=0>\n";
 foreach my $i ( 0 .. scalar( @$data ) - 1 ) {
 	print "<tr>";
@@ -27,7 +32,6 @@ foreach my $i ( 0 .. scalar( @$data ) - 1 ) {
 		if ( scalar @$find && $data->[ $i ]->[ $j ] eq $find->[ 0 ] ) {
 			if ( $tick > 26 ) {
 				warn Dumper $solution;
-
 				die "tick was to big: " . join( '-', @$find );
 			}
 			$total_tick += $tick;
@@ -50,10 +54,26 @@ print "\n";
 
 my $letters = [ undef, qw(a b c d e f g h i j k l m n o p q r s t u v w x y z) ];
 
+my $text = {
+	e => ['Everything on the page should be a clue.', 'Even a red herring can help.'],
+	h => ['Have someone else check your logic.'],
+	k => ['Keep notes.', 'Know what you want before you start.', 'Keep your process simple.'],
+	m => ['Make up stuff.'],
+	n => ['Not everone will get it.', 'Nice hints go a long way.'],
+	o => ['Obfuscation is always helpful.','Originalality will be rewarded.'],
+	p => ['Plan out your design.', 'Practice solving it yourself.'],
+	r => ['Recheck your work.'],
+	s => ['Stop when it starts to get too confusing.'],
+
+};
+
+print "<br><h2>WestSideDaddies tips to creating a good puzzle</h2><ol>\n";
 foreach my $s ( @{ $solution } ) {
-#	warn Dumper $s;
-	print "$letters->[ $s->[ 1 ] ]\n";
+	my $text_string = shift( @{ $text->{ $letters->[ $s->[ 1 ] ] } } ) || die "Missing text for $letters->[ $s->[ 1 ] ]";
+	print "<li>$text_string\n";
 }
+
+print "</ol>";
 
 #for my $j ( 0 .. scalar( @{ $data->[ 0 ] } ) - 1 ) {
 #	foreach my $i ( 0 .. scalar( @$data ) - 1 ) {
