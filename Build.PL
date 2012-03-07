@@ -1,6 +1,6 @@
 use strict;
 use warnings;
 
-require "./NCTBuild.pm";
-my $builder = NCTBuild->builder;
+require "./GeocacheBuild.pm";
+my $builder = GeocacheBuild->builder;
 $builder->create_build_script();

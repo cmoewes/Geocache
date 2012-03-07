@@ -1,7 +1,6 @@
-<project name="NCT Appliucation">
+<project name="Geocache">
 
 	<property environment="envar" />
-	<property name="dev.hostname" value="dc2nctdev01.dc2.digitalriver.com" />
 
 	<exec executable="git" dir="${basedir}" outputproperty="dev.branch" description="Sets the dev.branch property to the current checked out branch">
 		<arg value="rev-parse" />
@@ -22,18 +21,8 @@
 		</sequential>
 	</macrodef>
 
-	<target name="push" depends="git.local.commit,git.dev.push" description="Commit and Push the code to dev">
-		<sshexec host="${dev.hostname}" username="${user.name}" command="cd $HOME/nct/src &amp;&amp; git checkout -f ${dev.branch} &amp;&amp; $HOME/nct/apache/bin/apachectl stop &amp;&amp; sleep 5 &amp;&amp; $HOME/nct/apache/bin/apachectl start &amp;&amp; echo done" keyfile="${envar.HOME}/.ssh/id_dsa" />
-	</target>
 
-	<target name="test" depends="">
-		<echo>${dev.branch}</echo>
-	</target>
-
-
-
-
-	<target name="git.dev.push" depends="" description="Push changes to dev">
+	<target name="git.hub.push" depends="" description="Push changes to github">
 		<git command="push">
 			<args>
 				<arg value="--all" />
