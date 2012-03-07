@@ -1,0 +1,17 @@
+severity = 1
+verbose = 9
+
+exclude = RegularExpressions::ProhibitEnumeratedClasses CodeLayout::ProhibitParensWithBuiltins CodeLayout::RequireTidyCode Documentation::RequirePodAtEnd Lax::ProhibitEmptyQuotes::ExceptAsFallback ValuesAndExpressions::ProhibitEmptyQuotes ValuesAndExpressions::ProhibitNoisyQuotes Documentation::RequirePodSections Miscellanea::RequireRcsKeywords BuiltinFunctions::ProhibitStringyEval Subroutines::RequireArgUnpacking TestingAndDebugging::RequireUseWarnings Moose::RequireCleanNamespace Subroutines::ProhibitUnusedPrivateSubroutines
+
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = MooseX::Singleton
+
+[Subroutines::RequireFinalReturn]
+terminal_funcs = given
+
+
+[ValuesAndExpressions::ProhibitMagicNumbers]
+allowed_values = all_integers
+    
+[NamingConventions::Capitalization]
+subroutine_exemptions = getTableName 
