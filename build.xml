@@ -26,7 +26,7 @@
 		<git command="push">
 			<args>
 				<arg value="--all" />
-				<arg value="dev-ssh" />
+				<arg value="github" />
 			</args>
 		</git>
 	</target>
